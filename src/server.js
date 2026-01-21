@@ -151,7 +151,7 @@ async function startServer() {
     await MatchSimulator.start();
 
     // Start HTTP server
-    server.listen(config.port, () => {
+    server.listen(config.port, '0.0.0.0', () => {
       console.log('\n✅ Server is running!');
       console.log(`📍 HTTP API: http://localhost:${config.port}`);
       console.log(`🔌 WebSocket: ws://localhost:${config.port}/ws`);
