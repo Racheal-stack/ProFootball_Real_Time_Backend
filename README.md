@@ -2,6 +2,12 @@
 
 A production-ready backend API for real-time football match updates, featuring WebSocket communication, Server-Sent Events (SSE), live match simulation, and chat functionality.
 
+## 🌐 Live Demo
+
+**Deployed API:** https://profootball-real-time-backend.onrender.com
+
+Test the API instantly using the deployed version - no setup required!
+
 > **Quick Start:** New to the project? See [QUICKSTART.md](QUICKSTART.md) for a 5-minute setup guide!
 
 ## 📚 Documentation
@@ -74,6 +80,84 @@ For development with auto-reload:
 npm run dev
 ```
 
+## 🧪 Testing the Deployed API
+
+### Quick Test with cURL
+
+**1. Test Root Endpoint:**
+```bash
+curl https://profootball-real-time-backend.onrender.com/
+```
+
+**2. Get All Live Matches:**
+```bash
+curl https://profootball-real-time-backend.onrender.com/api/matches
+```
+
+**3. Get Match Details:**
+```bash
+curl https://profootball-real-time-backend.onrender.com/api/matches/{match-id}
+```
+
+**4. Health Check:**
+```bash
+curl https://profootball-real-time-backend.onrender.com/api/health
+```
+
+### Test with Browser
+
+Simply open these URLs in your browser:
+- **API Info:** https://profootball-real-time-backend.onrender.com/
+- **Live Matches:** https://profootball-real-time-backend.onrender.com/api/matches
+- **Health:** https://profootball-real-time-backend.onrender.com/api/health
+
+### Test WebSocket Connection
+
+**Using JavaScript in Browser Console:**
+```javascript
+const ws = new WebSocket('wss://profootball-real-time-backend.onrender.com/ws');
+
+ws.onopen = () => {
+  console.log('Connected to WebSocket');
+  
+  // Subscribe to a match (get match ID from /api/matches first)
+  ws.send(JSON.stringify({
+    type: 'subscribe',
+    matchId: 'your-match-id-here'
+  }));
+};
+
+ws.onmessage = (event) => {
+  console.log('Received:', JSON.parse(event.data));
+};
+```
+
+### Test SSE Stream
+
+**Using JavaScript:**
+```javascript
+const matchId = 'your-match-id-here'; // Get from /api/matches
+const eventSource = new EventSource(
+  `https://profootball-real-time-backend.onrender.com/api/matches/${matchId}/events/stream`
+);
+
+eventSource.onmessage = (event) => {
+  console.log('Match Event:', JSON.parse(event.data));
+};
+```
+
+**Using cURL:**
+```bash
+curl -N https://profootball-real-time-backend.onrender.com/api/matches/{match-id}/events/stream
+```
+
+### Automated Test Script
+
+Run the included test script (PowerShell):
+```bash
+.\test-endpoints.ps1
+```
+
 ## 📡 API Documentation
 
 ### REST Endpoints
@@ -119,7 +203,8 @@ Server-Sent Events stream that pushes real-time match events.
 
 ### WebSocket Connection
 
-Connect to: `ws://localhost:5000/ws`
+**Local:** `ws://localhost:5000/ws`  
+**Deployed:** `wss://profootball-real-time-backend.onrender.com/ws`
 
 #### Client → Server Events
 
