@@ -5,11 +5,6 @@ A production-ready backend API for real-time football match updates, featuring W
 > **Quick Start:** New to the project? See [QUICKSTART.md](QUICKSTART.md) for a 5-minute setup guide!
 
 ## 📚 Documentation
-
-- **[QUICKSTART.md](QUICKSTART.md)** - Get up and running in 5 minutes
-- **[SCHEMA.md](SCHEMA.md)** - Detailed database schema documentation
-- **[TESTING.md](TESTING.md)** - How to test all features
-- **[DEPLOYMENT.md](DEPLOYMENT.md)** - Deploy to production
 - **[ARCHITECTURE.md](ARCHITECTURE.md)** - System design and architecture
 
 ## 🚀 Features
